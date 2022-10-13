@@ -15,7 +15,11 @@ import androidx.fragment.app.Fragment;
 import com.pd.fairytailstore.R;
 import com.pd.fairytailstore.model.FaireTail;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class StoryFragment extends Fragment {
 
@@ -52,10 +56,29 @@ public class StoryFragment extends Fragment {
 
         FaireTail faireTail = requireArguments().getParcelable("ARG_STORY");
         nameStory.setText(faireTail.getNameStory());
-        //textStory.setText(faireTail.getNameFile());
+
 
         String fileName = faireTail.getNameFile();
 
+        try {
+            // открываем поток для чтения
+            BufferedReader br = new BufferedReader(new InputStreamReader(
+                    getContext().getAssets().open(fileName)));
+            StringBuilder text = new StringBuilder();
+            String str = "";
+            // читаем содержимое
+            while ((str = br.readLine()) != null) {
+                text.append(str);
+                text.append('\n');
+            }
+            br.close();
+
+            textStory.setText(text);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
+
+
 }

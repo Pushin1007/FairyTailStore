@@ -77,7 +77,7 @@ public class SocialNetworkFragment extends Fragment implements MyClickListener {
         Bundle bundle = new Bundle();
         bundle.putParcelable("ARG_STORY", faireTail);
 
-        Toast.makeText(getContext(), "work" + position, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getContext(), "work" + position, Toast.LENGTH_SHORT).show();
 
 
         StoryFragment fragment = StoryFragment.newInstance(faireTail); // Фрагмент, которым собираетесь заменить первый фрагмент
