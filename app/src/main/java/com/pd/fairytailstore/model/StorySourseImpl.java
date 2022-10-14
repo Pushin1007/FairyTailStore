@@ -1,7 +1,5 @@
 package com.pd.fairytailstore.model;
 
-import android.content.res.Resources;
-
 import java.util.ArrayList;
 import java.util.List;
 

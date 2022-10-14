@@ -1,11 +1,9 @@
 package com.pd.fairytailstore.ui;
 
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,8 +14,6 @@ import com.pd.fairytailstore.R;
 import com.pd.fairytailstore.model.FaireTail;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -25,7 +21,6 @@ public class StoryFragment extends Fragment {
 
 
     public StoryFragment() {
-
     }
 
 
@@ -62,8 +57,7 @@ public class StoryFragment extends Fragment {
 
         try {
             // открываем поток для чтения
-            BufferedReader br = new BufferedReader(new InputStreamReader(
-                    getContext().getAssets().open(fileName)));
+            BufferedReader br = new BufferedReader(new InputStreamReader(getContext().getAssets().open(fileName)));
             StringBuilder text = new StringBuilder();
             String str = "";
             // читаем содержимое

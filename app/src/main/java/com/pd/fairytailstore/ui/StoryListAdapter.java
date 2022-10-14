@@ -12,13 +12,13 @@ import com.pd.fairytailstore.model.StorySourse;
 
 
 //Класс который обслуживает RecyclerView
-public class SocialNetworkAdapter extends RecyclerView.Adapter<SocialNetworkAdapter.MyViewHolder> {
+public class StoryListAdapter extends RecyclerView.Adapter<StoryListAdapter.MyViewHolder> {
 
     private StorySourse dataSource;
 
     // Передаем в конструктор источник данных
     // В нашем случае это массив, но может быть и запросом к БД
-    public SocialNetworkAdapter(StorySourse dataSource) {
+    public StoryListAdapter(StorySourse dataSource) {
         this.dataSource = dataSource;
     }
 
