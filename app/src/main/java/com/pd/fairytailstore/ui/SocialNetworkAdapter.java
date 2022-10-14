@@ -69,7 +69,7 @@ public class SocialNetworkAdapter extends RecyclerView.Adapter<SocialNetworkAdap
         private TextView nameStory;
         private TextView author;
         private TextView timeToRead;
-
+        private View card;
 
 
         public MyViewHolder(View itemView) {
@@ -78,9 +78,9 @@ public class SocialNetworkAdapter extends RecyclerView.Adapter<SocialNetworkAdap
             nameStory = (TextView) itemView.findViewById(R.id.nameStory);
             author = (TextView) itemView.findViewById(R.id.autor);
             timeToRead = (TextView) itemView.findViewById(R.id.time_to_read);
+            card = (View) itemView.findViewById(R.id.title_descr);
 
-
-            nameStory.setOnClickListener(new View.OnClickListener() { // обработчик нажатий, можно поместить и в onCreateViewHolder
+            card.setOnClickListener(new View.OnClickListener() { // обработчик нажатий, можно поместить и в onCreateViewHolder
                 @Override
                 public void onClick(View view) {
                     listener.onMyClick(view, getAdapterPosition());
