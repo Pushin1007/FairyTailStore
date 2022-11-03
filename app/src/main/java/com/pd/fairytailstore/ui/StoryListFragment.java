@@ -1,5 +1,6 @@
 package com.pd.fairytailstore.ui;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -15,6 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.pd.fairytailstore.Navigation;
 import com.pd.fairytailstore.R;
 import com.pd.fairytailstore.model.FaireTail;
 import com.pd.fairytailstore.model.StorySourse;
@@ -25,6 +27,21 @@ public class StoryListFragment extends Fragment implements MyClickListener {
     private final StorySourse data = new StorySourseImpl().init();// Получим источник данных для списка
     private StoryListAdapter adapter;
     private RecyclerView recyclerView;
+    private Navigation navigation;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        MainActivity activity = (MainActivity) context;
+        navigation = activity.getNavigation();
+
+    }
+
+    @Override
+    public void onDetach() {
+        navigation = null;
+        super.onDetach();
+    }
 
 
     public static StoryListFragment newInstance() {
@@ -59,6 +76,7 @@ public class StoryListFragment extends Fragment implements MyClickListener {
 
         Bundle bundle = new Bundle();
         bundle.putParcelable("ARG_STORY", faireTail);
+        /*
         // Toast.makeText(getContext(), "work" + position, Toast.LENGTH_SHORT).show();
         StoryFragment fragment = StoryFragment.newInstance(faireTail); // Фрагмент, которым собираетесь заменить первый фрагмент
         FragmentTransaction transaction = getParentFragmentManager().beginTransaction(); // Или getSupportFragmentManager(), если используете support.v4
@@ -66,6 +84,10 @@ public class StoryListFragment extends Fragment implements MyClickListener {
         transaction.addToBackStack(null); // Добавляете в backstack, чтобы можно было вернутся обратно
 
         transaction.commit(); // Коммитете
+
+         */
+        navigation.addFragment(StoryFragment.newInstance(faireTail), true);
+
     }
 
     @Override
