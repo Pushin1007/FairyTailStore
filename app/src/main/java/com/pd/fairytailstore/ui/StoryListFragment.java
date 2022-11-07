@@ -12,19 +12,20 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pd.fairytailstore.Navigation;
 import com.pd.fairytailstore.R;
-import com.pd.fairytailstore.model.FaireTail;
+import com.pd.fairytailstore.model.FairyTail;
+import com.pd.fairytailstore.model.StorySourceRemoteImpl;
 import com.pd.fairytailstore.model.StorySourse;
-import com.pd.fairytailstore.model.StorySourseImpl;
+import com.pd.fairytailstore.model.StorySourseLocalImpl;
+import com.pd.fairytailstore.model.StorySourselResponce;
 
 public class StoryListFragment extends Fragment implements MyClickListener {
 
-    private final StorySourse data = new StorySourseImpl().init();// Получим источник данных для списка
+    private StorySourse data;
     private StoryListAdapter adapter;
     private RecyclerView recyclerView;
     private Navigation navigation;
@@ -54,7 +55,28 @@ public class StoryListFragment extends Fragment implements MyClickListener {
         setHasOptionsMenu(true); //говорим что в этом фрагменте есть своя менюшка
         View view = inflater.inflate(R.layout.fragment_storylist, container, false);
         recyclerView = view.findViewById(R.id.recycler_view_lines);        //находим ресйклер
+       // data = new StorySourseLocalImpl().init();// Получим источник данных для списка
+
+
         initRecyclerView(data, recyclerView);
+
+
+        if (false) {
+            data = new StorySourseLocalImpl().init(new StorySourselResponce() {
+                @Override
+                public void initialized(StorySourse storySourse) {
+                }
+            });
+        } else {
+            data = new StorySourceRemoteImpl().init(new StorySourselResponce() {
+                @Override
+                public void initialized(StorySourse storySourse) {
+                    adapter.notifyDataSetChanged();
+                }
+            });
+        }
+
+        adapter.setDataSource(data);
         return view;
     }
 
@@ -63,7 +85,7 @@ public class StoryListFragment extends Fragment implements MyClickListener {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());         // Будем работать со встроенным менеджером
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);        // все элементы будут одного размера,Эта установка служит для повышения производительности системы
-        adapter = new StoryListAdapter(data);// Установим адаптер и передаем ему данные
+        adapter = new StoryListAdapter(this);// Установим адаптер и передаем ему данные
         adapter.setOnMyClickListener(this);
         recyclerView.setAdapter(adapter);        //задаем ресайклеру наш адаптер
     }
@@ -72,7 +94,7 @@ public class StoryListFragment extends Fragment implements MyClickListener {
     // Установим слушателя
     @Override
     public void onMyClick(View view, int position) {
-        FaireTail faireTail = data.getFairyTail(position);
+        FairyTail faireTail = data.getFairyTail(position);
 
         Bundle bundle = new Bundle();
         bundle.putParcelable("ARG_STORY", faireTail);

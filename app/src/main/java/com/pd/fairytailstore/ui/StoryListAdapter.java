@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pd.fairytailstore.R;
@@ -15,11 +16,22 @@ import com.pd.fairytailstore.model.StorySourse;
 public class StoryListAdapter extends RecyclerView.Adapter<StoryListAdapter.MyViewHolder> {
 
     private StorySourse dataSource;
+    private Fragment fragment;
 
     // Передаем в конструктор источник данных
     // В нашем случае это массив, но может быть и запросом к БД
-    public StoryListAdapter(StorySourse dataSource) {
+   /* public StoryListAdapter(StorySourse dataSource) {
         this.dataSource = dataSource;
+    }
+
+    */
+    public StoryListAdapter(Fragment fragment) {
+        this.fragment = fragment;
+    }
+
+    public void setDataSource(StorySourse dataSource) {
+        this.dataSource = dataSource;
+        notifyDataSetChanged();
     }
 
     private MyClickListener listener; // Слушатель будет устанавливаться извне

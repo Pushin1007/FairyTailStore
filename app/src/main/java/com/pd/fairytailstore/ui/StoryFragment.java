@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.pd.fairytailstore.R;
-import com.pd.fairytailstore.model.FaireTail;
+import com.pd.fairytailstore.model.FairyTail;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,7 +24,7 @@ public class StoryFragment extends Fragment {
     }
 
 
-    public static StoryFragment newInstance(FaireTail faireTail) {
+    public static StoryFragment newInstance(FairyTail faireTail) {
         StoryFragment fragment = new StoryFragment();
         Bundle args = new Bundle();
         args.putParcelable("ARG_STORY", faireTail);
@@ -49,7 +49,7 @@ public class StoryFragment extends Fragment {
         TextView nameStory = view.findViewById(R.id.story);
         TextView textStory = view.findViewById(R.id.srory_text);
 
-        FaireTail faireTail = requireArguments().getParcelable("ARG_STORY");
+        FairyTail faireTail = requireArguments().getParcelable("ARG_STORY");
         nameStory.setText(faireTail.getNameStory());
 
 

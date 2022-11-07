@@ -4,10 +4,10 @@ package com.pd.fairytailstore.model;
 //интерфейс данных
 public interface StorySourse {
 
+    StorySourse init(StorySourselResponce storySourselResponce);
+
     int size();
-
-    FaireTail getFairyTail(int position);
-
+    FairyTail getFairyTail(int position);
     void clearAll();
 
 }
