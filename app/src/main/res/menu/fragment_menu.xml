@@ -4,11 +4,22 @@
     <item
         android:id="@+id/search_text"
         android:icon="@drawable/ic_search"
-        android:title="искать"
-        app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/clear"
+        android:title="Искать"
+        app:showAsAction="always" />
 
-        android:title="очистить"
-        app:showAsAction="ifRoom" />
+<!--    <item-->
+<!--        android:id="@+id/clear"-->
+<!--        android:title="очистить"-->
+<!--        app:showAsAction="ifRoom" />-->
+
+    <item
+        android:id="@+id/review"
+
+        android:title="Отзыв"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/about_us"
+
+        android:title="О нас"
+        app:showAsAction="never" />
 </menu>

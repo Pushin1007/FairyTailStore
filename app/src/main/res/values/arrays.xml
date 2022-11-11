@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="variants">
+
+        <item>Читаю сказки на ночь ребенку</item>
+        <item>Читаю сказки себе на ночь</item>
+        <item>Люблю необычные истории</item>
+        <item>Я являюсь фанатом сказок</item>
+        <item>Засыпаю только с телефоном</item>
+        <item>Люблю Happy End</item>
+        <item>Просто нравится приложение СКАЗКИ</item>
+    </string-array>
+</resources>
