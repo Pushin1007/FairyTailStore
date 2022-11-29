@@ -41,8 +41,8 @@ public class StoryListFragment extends Fragment implements MyClickListener {
         navigation = activity.getNavigation();
 
     }
-
     @Override
+
     public void onDetach() {
         navigation = null;
         super.onDetach();
@@ -86,12 +86,12 @@ public class StoryListFragment extends Fragment implements MyClickListener {
 
     private void initRecyclerView(StorySourse data, RecyclerView recyclerView) {
         //задаем менеджер как будет распологатся элементы в рейсайклер
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());         // Будем работать со встроенным менеджером
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());  // Будем работать со встроенным менеджером
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);        // все элементы будут одного размера,Эта установка служит для повышения производительности системы
+        recyclerView.setHasFixedSize(true); // все элементы будут одного размера,Эта установка служит для повышения производительности системы
         adapter = new StoryListAdapter(this);// Установим адаптер и передаем ему данные
         adapter.setOnMyClickListener(this);
-        recyclerView.setAdapter(adapter);        //задаем ресайклеру наш адаптер
+        recyclerView.setAdapter(adapter); //задаем ресайклеру наш адаптер
     }
 
 
@@ -99,10 +99,8 @@ public class StoryListFragment extends Fragment implements MyClickListener {
     @Override
     public void onMyClick(View view, int position) {
         FairyTail faireTail = data.getFairyTail(position);
-
         Bundle bundle = new Bundle();
         bundle.putParcelable("ARG_STORY", faireTail);
-
         navigation.addFragment(StoryFragment.newInstance(faireTail), true);
 
     }
@@ -144,7 +142,9 @@ public class StoryListFragment extends Fragment implements MyClickListener {
                 dialog.show();
 
             case R.id.about_us:
-                Toast.makeText(getContext(), "О нас", Toast.LENGTH_SHORT).show();
+                DialogFragmentAboutUs dialogFragmentAboutUs = new DialogFragmentAboutUs();
+                dialogFragmentAboutUs.show(getChildFragmentManager(),"TAG");
+                //Toast.makeText(getContext(), "О нас", Toast.LENGTH_SHORT).show();
                 return true;
         }
 
